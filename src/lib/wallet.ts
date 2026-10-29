@@ -44,9 +44,9 @@ function fromRow(row: WalletRow): WalletRecord {
     source: 'supabase',
   }
 }
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://lcxwallet.onrender.com";
 async function post<T>(path: string, body: unknown): Promise<T> {
-  const response = await fetch(`/api${path}`, {
+  const response = await fetch(`${API_BASE_URL}/api${path}`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body),
