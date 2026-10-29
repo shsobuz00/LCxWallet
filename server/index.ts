@@ -204,7 +204,7 @@ async function route(req: Request): Promise<Response> {
 
 Bun.serve({
   port: PORT,
-  hostname: '127.0.0.1',
+  hostname: "0.0.0.0",
   idleTimeout: 60,
   async fetch(req) {
     try {
