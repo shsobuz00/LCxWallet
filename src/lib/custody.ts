@@ -7,12 +7,12 @@ import {
   type VaultStatus,
   type WithdrawalRequest,
 } from './custody-shared'
-
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://lcxwallet.onrender.com";
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`/api${path}`, init)
-  const body = (await response.json().catch(() => ({}))) as { error?: string }
-  if (!response.ok) throw new Error(body.error ?? `Request failed (${response.status})`)
-  return body as T
+  const response = await fetch(`${API_BASE_URL}/api${path}`, init);
+  const body = (await response.json().catch(() => ({}))) as { error?: string };
+  if (!response.ok) throw new Error(body.error ?? `Request failed (${response.status})`);
+  return body as T;
 }
 
 export type InternalBalances = Record<string, bigint>
