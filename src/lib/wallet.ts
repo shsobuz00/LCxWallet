@@ -86,7 +86,7 @@ async function loadWallet(address: string): Promise<WalletRecord> {
     }
   }
 
-  const response = await fetch(`/api/balances?user=${address}`)
+  const response = await fetch(`${API_BASE_URL}/api/balances?user=${address}`);
   const { balances } = (await response.json()) as { balances: Record<string, string> }
   return {
     walletAddress: ensured.wallet_address,
